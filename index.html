@@ -1,11 +1,12 @@
 <html>
 	<head>
-
+        <!-- Memoria y Pista - https://youtu.be/jPjne3gzw6M?t=4549 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- For responsive -->
 		<meta charset='utf-8'>
 
-		<link rel="stylesheet" type="text/css" href="style/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="style/css/main.css">
+        <link rel="stylesheet" type="text/css" href="style/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="style/css/main.css">
+        <link rel="stylesheet" type="text/css" href="style/css/index.css">
 		
 		<script type="text/javascript" src="style/js/jquery.min.js"></script>
 		<script type="text/javascript" src="style/js/bootstrap.min.js"></script>
@@ -14,39 +15,25 @@
 	</head>
 	<body>
 		<div class="container">
-            <div>
-                ¿Cuántos equipos hay? : 
-                <select id="equipos">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
+            <div id="titleDiv">
+                <h1><i>Charades</i></h1>
+                <small><i> #siiiike #wannabe</i></small>
             </div>
-            <div>
-                ¿Cuántos rounds jugarán? : 
-                <select id="rounds">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
+            <div id="questionsDiv">
+                <div>
+                    <label for="equipos"> ¿Cuántos equipos hay? </label>
+                    <input type="number" min="1" name="equipos" id="equipos">
+                </div>
+                <div>
+                    <label for="rounds"> ¿Cuántos rondas jugarán? </label>
+                    <input type="number" min="1" name="rounds" id="rounds">
+                </div>
             </div>
-
-            <button id="playBtn" type="button" class="btn btn-default" onclick="initScore()">
-					&#161;Jugar!</button>
+            <div id="btnDiv">
+                <button id="playBtn" type="button" class="btn btn-default" onclick="initScore()">
+                    &#161;Jugar!
+                </button>
+            </div>
 		</div>
 	</body>
 
