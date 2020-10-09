@@ -6,6 +6,19 @@ var scoreArr;
 var equipos;
 var rounds;
 
+
+// ################## index.html ##################
+
+function initScore() {
+	// sessionStorage
+	// https://stackoverflow.com/questions/16206322/how-to-get-js-variable-to-retain-value-after-page-refresh
+
+	sessionStorage.equipos = document.getElementById("equipos").value;
+	sessionStorage.rounds = document.getElementById("rounds").value;
+}
+
+// ################## game.html ##################
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -172,24 +185,6 @@ function resetTimer(){
 	changed();
 	$('#startTimerBtn').prop('disabled', false);
 	$('#pauseTimerBtn').prop('disabled', true);
-}
-
-function initScore(){
-
-	// sessionStorage
-	// https://stackoverflow.com/questions/16206322/how-to-get-js-variable-to-retain-value-after-page-refresh
-	console.log("hello bb");
-	
-	// getting value of selects
-	// https://www.w3schools.com/jsref/prop_select_value.asp
-
-	sessionStorage.equipos = document.getElementById("equipos").value;
-	sessionStorage.rounds = document.getElementById("rounds").value;
-
-	console.log(sessionStorage.equipos);
-	console.log(sessionStorage.rounds);
-
-	document.location = "game.html"
 }
 
 function createScoreTable(){
