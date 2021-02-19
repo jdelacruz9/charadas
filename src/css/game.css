@@ -48,6 +48,7 @@ body{
 	height: 60;
 
     border-radius: 10px 0 0 10px;
+	cursor: pointer;
 }
 
 #wordDiv {
@@ -75,4 +76,9 @@ body{
 
 #playBtn, #pauseBtn {
 	color: rgb(60, 127, 179);
+}
+
+#scoresTableDiv th,td {
+	text-align: center;
+	font-size: larger;
 }

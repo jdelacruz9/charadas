@@ -71,7 +71,8 @@ function timesUp() {
 	console.log("timesUp");
 	gameState = STOPPED;
 
-	scores[team] += goodWords;
+	scores[team][round] = goodWords;
+	scores[team]["total"] += goodWords;
 	goodWords = 0;
 	
 	document.getElementById("currentScore").innerHTML = goodWords;
@@ -93,6 +94,8 @@ function timesUp() {
 
 	document.getElementById("teamNumber").innerHTML = team + 1;
 	console.log(scores);
+
+	createTable();
 }
 
 function setClock(sec) {
@@ -152,17 +155,30 @@ function pause() {
 
 function init(){
 	setClock(totalSecs);
-	teams = Number(sessionStorage.teams);
-	rounds = Number(sessionStorage.rounds);
+	teams = sessionStorage.teams ? Number(sessionStorage.teams) : 3;
+	rounds = sessionStorage.rounds ? Number(sessionStorage.rounds) : 3;
 	console.log(teams, rounds);
 	round = 0;
 	team = 0;
 	goodWords = 0;
 
-	scores = new Array(teams).fill(0);
+	scores = initArray(teams, {"total":0});
 	
 	document.getElementById("teamNumber").innerHTML = team+1;
 	document.addEventListener("keydown", keyDownDoc, false); // http://jsfiddle.net/9ZDxw/1/
+
+	createTable();
+}
+
+/*
+ *	initArray - helper function to create an array of size=len and initializes every
+ *		element to a copy/clone of the obj
+ */
+function initArray(len, obj) {
+	let res = new Array(len).fill(0);
+	res.forEach((elem, pos, theArray) => theArray[pos] = {...obj});
+	
+	return res;
 }
 
 function keyDownDoc(e) {
@@ -186,4 +202,57 @@ function keyDownDoc(e) {
 		default:
 			console.log(keyCode);
 	}
+}
+
+function createTable() {
+	let scoresTableDiv = document.getElementById("scoresTableDiv");
+	scoresTableDiv.innerHTML = "";
+
+	let scoresTable = document.createElement("table");
+	scoresTable.classList.add("table", "table-hover");
+	let scoresTableHead = document.createElement("thead");
+	let scoresTableHeaderRow = document.createElement("tr");
+
+	for (r = 0; r <= rounds + 1; r++) {
+
+		let header = r;
+		if (r == 0) header = "#";
+		else if (r == (rounds + 1)) header = "Total";
+
+		let scoreHeader = document.createElement("th");
+		scoreHeader.setAttribute("scope", "col");
+		scoreHeader.innerText = header;
+		scoresTableHeaderRow.append(scoreHeader);
+	}
+
+	scoresTableHead.append(scoresTableHeaderRow);
+	scoresTable.append(scoresTableHead)
+
+	let scoresTableBody = document.createElement("tbody");
+
+	scores.forEach((teamInfo, pos) => {
+		let roundRow = document.createElement("tr");
+		
+		// adding Team #
+		let teamCell = document.createElement("td");
+		teamCell.innerText = pos + 1;
+		roundRow.append(teamCell);
+
+		// adding score for each round
+		for (j = 0; j <= rounds; j++) {
+			
+			let text = "";
+			if (j == rounds) text = teamInfo["total"];
+			else text = teamInfo.hasOwnProperty(j) ? teamInfo[j] : "-";
+
+			let scoreCell = document.createElement("td");
+			scoreCell.innerText = text;
+			roundRow.append(scoreCell);
+		}
+
+		scoresTableBody.append(roundRow);
+	});
+
+	scoresTable.append(scoresTableBody); // body to table
+	scoresTableDiv.append(scoresTable);  // table to div
 }
