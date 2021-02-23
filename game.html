@@ -22,7 +22,7 @@
 
 	</head>
 	<body onload="init()">
-		<!-- Modal -->
+		<!-- Score Modal -->
 		<div class="modal fade" id="scoresModal" tabindex="-1" aria-labelledby="scoresModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 				<div class="modal-content">
@@ -37,9 +37,38 @@
 			</div>
 		</div>
 
+		<!-- Timer Modal -->
+		<div class="modal fade" id="timerModal" tabindex="-1" aria-labelledby="timerModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="timerModalLabel" style="font-size: x-large;">Edit timer</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="input-group timerInputsDiv">
+							<input type="number" class="form-control" id="minsInput" aria-describedby="basic-addon3">
+							<span class="input-group-text" id="basic-addon3">Minutes</span>
+						</div>
+						<br>
+						<div class="input-group timerInputsDiv">
+							<input type="number" class="form-control" id="secsInput" aria-describedby="basic-addon3">
+							<span class="input-group-text" id="basic-addon3">Seconds</span>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+						<button type="button" class="btn" data-bs-dismiss="modal" style="color: white; background-color: mediumseagreen;" onclick="updateTimer()">
+							Update Timer
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div id="mainDiv">
 			<div id="headerDiv">
-				<div class="headerElement" id="clockDiv">
+				<div class="headerElement" id="clockDiv" data-bs-toggle="modal" data-bs-target="#timerModal" onclick="setClock()">
 					<span id="minutes">00</span>:<span id="seconds">00</span>
 				</div>
 				<div class="headerElement" id="currentScoreDiv">

@@ -48,6 +48,16 @@ function newWord(){
 	elem.innerHTML = nWord;
 }
 
+function updateTimer() {
+	let minutes = parseInt(document.getElementById("minsInput").value);
+	let seconds = parseInt(document.getElementById("secsInput").value);
+
+	if (minutes == NaN || seconds == NaN) return;
+	
+	totalSecs = seconds + minutes * 60;
+	setClock(totalSecs);
+}
+
 function pad(val) {
 	return val > 9 ? val : "0" + val;
 }
@@ -98,9 +108,16 @@ function timesUp() {
 	createTable();
 }
 
-function setClock(sec) {
-	document.getElementById("seconds").innerHTML = pad(sec % 60);
-	document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+function setClock(sec = totalSecs) {
+	let seconds = pad(sec % 60);
+	let minutes = pad(parseInt(sec / 60, 10));
+
+	document.getElementById("seconds").innerHTML = seconds;
+	document.getElementById("minutes").innerHTML = minutes;
+
+	// set inputs in the timerModal
+	document.getElementById("secsInput").value = seconds;
+	document.getElementById("minsInput").value = minutes;
 }
 
 function skip() {
