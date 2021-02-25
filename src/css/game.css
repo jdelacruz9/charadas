@@ -67,11 +67,11 @@ body{
 	cursor: pointer;
 }
 
-#skipBtn {
+#skipBtn, #minusBtn {
 	color: rgb(179, 60, 60);
 }
 
-#nextBtn {
+#nextBtn, #plusBtn {
 	color: mediumseagreen;
 }
 
@@ -82,4 +82,21 @@ body{
 #scoresTableDiv th,td {
 	text-align: center;
 	font-size: larger;
+}
+
+#roundScoreModal .modal-body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#roundScoreModal .bi {
+	font-size: 2vw;
+	cursor: pointer;
+}
+
+#totalRoundScore {
+	font-size: 8vw;
+	margin-left: 10px;
+	margin-right: 10px;
 }

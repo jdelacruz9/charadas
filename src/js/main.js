@@ -81,17 +81,26 @@ function timesUp() {
 	console.log("timesUp");
 	gameState = STOPPED;
 
-	scores[team][round] = goodWords;
-	scores[team]["total"] += goodWords;
-	goodWords = 0;
-	
-	document.getElementById("currentScore").innerHTML = goodWords;
 	document.getElementById('currentWord').innerHTML = DEFAULT_WORD;
 	document.getElementById("playBtn").hidden = false;
 	document.getElementById("pauseBtn").hidden = true;
 
 	setClock(totalSecs);
+	
+	document.getElementById("totalRoundScore").innerHTML = goodWords;
+	let roundScoreModal = new bootstrap.Modal(document.getElementById('roundScoreModal'), {});
+	roundScoreModal.toggle();
+}
+
+function endRound() {
+	scores[team][round] = goodWords;
+	scores[team]["total"] += goodWords;
+	goodWords = 0;
+
+	document.getElementById("currentScore").innerHTML = 0;
+
 	if (round == rounds - 1 && team == teams - 1) {
+		// TODO: GAME OVER - SHOW WINNER
 		console.log("Done Done");
 	}
 
@@ -106,6 +115,19 @@ function timesUp() {
 	console.log(scores);
 
 	createTable();
+}
+
+function plus(q=1) {
+	goodWords += q;
+	document.getElementById("currentScore").innerHTML = goodWords;
+	document.getElementById("totalRoundScore").innerHTML = goodWords;
+
+}
+
+function minus(q=1) {
+	goodWords-=q;
+	document.getElementById("currentScore").innerHTML = goodWords;
+	document.getElementById("totalRoundScore").innerHTML = goodWords;
 }
 
 function setClock(sec = totalSecs) {
@@ -171,6 +193,10 @@ function pause() {
 }
 
 function init(){
+	document.getElementById('roundScoreModal').addEventListener('hidden.bs.modal', function (event) {
+		endRound();
+	})
+
 	setClock(totalSecs);
 	teams = sessionStorage.teams ? Number(sessionStorage.teams) : 3;
 	rounds = sessionStorage.rounds ? Number(sessionStorage.rounds) : 3;

@@ -66,6 +66,28 @@
 			</div>
 		</div>
 
+		<!-- Round Score Modal -->
+		<div class="modal fade" id="roundScoreModal" tabindex="-1" aria-labelledby="roundScoreModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="roundScoreModalLabel" style="font-size: x-large;">STOP! - Total</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<i class="bi bi-dash-circle" id="minusBtn" onclick="minus(1)"></i>
+						<span id="totalRoundScore">19</span>
+						<i class="bi bi-plus-circle" id="plusBtn" onclick="plus(1)"></i>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn" data-bs-dismiss="modal" style="color: white; background-color: mediumseagreen;">
+							Done
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div id="mainDiv">
 			<div id="headerDiv">
 				<div class="headerElement" id="clockDiv" data-bs-toggle="modal" data-bs-target="#timerModal" onclick="setClock()">
