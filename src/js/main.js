@@ -16,16 +16,6 @@ var totalSecs = 5;
 
 // ################## index.html ##################
 
-function initScore() {
-	// sessionStorage
-	// https://stackoverflow.com/questions/16206322/how-to-get-js-variable-to-retain-value-after-page-refresh
-
-	sessionStorage.teams = document.getElementById("teams").value;
-	sessionStorage.rounds = document.getElementById("rounds").value;
-}
-
-// ################## game.html ##################
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
