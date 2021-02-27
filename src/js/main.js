@@ -52,7 +52,7 @@ function updateTimer() {
 	let minutes = parseInt(document.getElementById("minsInput").value);
 	let seconds = parseInt(document.getElementById("secsInput").value);
 
-	if (minutes == NaN || seconds == NaN) return;
+	if (isNaN(minutes) || isNaN(seconds)) return;
 	
 	totalSecs = seconds + minutes * 60;
 	setClock(totalSecs);
@@ -209,25 +209,28 @@ function pause() {
 	clearInterval(clock);
 }
 
-function init(){
-	document.getElementById('roundScoreModal').addEventListener('hidden.bs.modal', function (event) {
-		endRound();
-	})
+function startGame() {
+	teams = parseInt(document.getElementById("teamsInput").value);
+	rounds = parseInt(document.getElementById("roundsInput").value);
+	
+	if (isNaN(teams) || isNaN(rounds)) return;
+
+	document.getElementById('roundScoreModal').addEventListener('hidden.bs.modal', endRound);
 
 	setClock(totalSecs);
-	teams = sessionStorage.teams ? Number(sessionStorage.teams) : 3;
-	rounds = sessionStorage.rounds ? Number(sessionStorage.rounds) : 3;
-	console.log(teams, rounds);
+
 	round = 0;
 	team = 0;
 	goodWords = 0;
 
-	scores = initArray(teams, {"total":0});
-	
-	document.getElementById("teamNumber").innerHTML = team+1;
+	scores = initArray(teams, { "total": 0 });
+
+	document.getElementById("teamNumber").innerHTML = team + 1;
 	document.addEventListener("keydown", keyDownDoc, false); // http://jsfiddle.net/9ZDxw/1/
 
 	createTable();
+	
+	document.getElementById("newGameDiv").style.display = "none";
 }
 
 /*

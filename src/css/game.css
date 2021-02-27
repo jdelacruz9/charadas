@@ -1,6 +1,10 @@
+:root {
+	--lightBg: white;
+	--darkBg: #161c22;
+}
+
 body{
-	background-color: #eee;
-	font-family: 'Roboto';
+	font-family: "Rubik";
 }
 
 .container{
@@ -104,4 +108,59 @@ body{
 #winnerName {
 	font-size: 4vw;
 	overflow-wrap: break-word;
+}
+
+#newGameModal .modal-content * {
+	background-color: #565656;
+	border-color: #565656;
+	color: white;
+}
+
+#newGameDiv {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	padding-top: 10%;
+	background-color: var(--lightBg);
+}
+
+#newGameDivContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#newGameDivContent * {
+	margin-bottom: 15px;
+}
+
+#newGameDivContent input {
+	max-width: 300px;
+	background-color: rgb(179, 60, 60);
+	color: white;
+	border-radius: 20px;
+}
+
+#newGameDivContent input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: white;
+	opacity: 0.50;
+}
+
+#startGameBtn {
+	border-radius: 20px;
+	color: white; 
+	background-color: mediumseagreen;
+	width: 5rem;
+}
+
+#title {
+	font-size: 6vw;
+	color: mediumseagreen;
+}
+
+@media screen and (max-width: 1500px) {
+	#title {
+		font-size: 4rem;
+	}
 }
