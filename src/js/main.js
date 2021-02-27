@@ -100,8 +100,7 @@ function endRound() {
 	document.getElementById("currentScore").innerHTML = 0;
 
 	if (round == rounds - 1 && team == teams - 1) {
-		// TODO: GAME OVER - SHOW WINNER
-		console.log("Done Done");
+		gameOver();
 	}
 
 	if (team == teams - 1) {
@@ -115,6 +114,24 @@ function endRound() {
 	console.log(scores);
 
 	createTable();
+}
+
+function gameOver() {
+
+	let winner = 0;
+	scores.forEach((t, pos, arr) => {
+		if (arr[pos].total > arr[winner].total) {
+			winner = pos;
+		}
+	});
+
+	document.getElementById("winnerName").innerHTML = "Team " + winner + 1;
+
+	let winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'), {
+		keyboard: false,
+		backdrop: "static"
+	});
+	winnerModal.toggle();
 }
 
 function plus(q=1) {

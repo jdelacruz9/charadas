@@ -100,3 +100,8 @@ body{
 	margin-left: 10px;
 	margin-right: 10px;
 }
+
+#winnerName {
+	font-size: 4vw;
+	overflow-wrap: break-word;
+}

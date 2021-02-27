@@ -88,6 +88,26 @@
 			</div>
 		</div>
 
+		<!-- Winner Modal -->
+		<div class="modal fade" id="winnerModal" tabindex="-1" aria-labelledby="winnerModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="winnerModalLabel" style="font-size: x-large;">And the WINNER is:</h5>
+					</div>
+					<div class="modal-body">
+						<span id="winnerName">Maracachimbas</span>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn"
+							style="color: white; background-color: mediumseagreen;" onclick="location.reload()">
+							Play Again!
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div id="mainDiv">
 			<div id="headerDiv">
 				<div class="headerElement" id="clockDiv" data-bs-toggle="modal" data-bs-target="#timerModal" onclick="setClock()">
