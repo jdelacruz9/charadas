@@ -115,7 +115,7 @@ function gameOver() {
 		}
 	});
 
-	document.getElementById("winnerName").innerHTML = "Team " + winner + 1;
+	document.getElementById("winnerName").innerHTML = "Team " + (winner + 1);
 
 	let winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'), {
 		keyboard: false,
