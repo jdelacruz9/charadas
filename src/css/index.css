@@ -164,3 +164,9 @@ body{
 		font-size: 4rem;
 	}
 }
+
+@media screen and (max-width: 1000px) {
+	#wordDiv {
+		font-size: 6rem;
+	}
+}
