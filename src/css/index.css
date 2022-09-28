@@ -1,10 +1,27 @@
 :root {
+	--bg-color: #161c22;
 	--lightBg: white;
 	--darkBg: #161c22;
+	--modal-border-color: #161c22;
+	--text-color: white;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 body{
 	font-family: "Rubik";
+	background-color: var(--bg-color);
+}
+
+.light-theme {
+	--bg-color: white;
+	--modal-border-color: #dee2e6;
+	--text-color: #161c22;
 }
 
 .container{
@@ -28,13 +45,35 @@ body{
     justify-content: center;
     align-items: center;
 	background-color: mediumseagreen;
-	font-size: 40;
+	font-size: 40px;
+}
+
+.modal .form-control {
+	background-color: rgb(179, 60, 60);
+	color: white;
+}
+
+.modal .timerInputsDiv span {
+	display: inline;
+	background-color: mediumseagreen;
+	color: white;
+	width: 20%;
+	min-width: 90px;
+}
+
+.modal .modal-header,.modal-footer {
+	border-color: var(--modal-border-color);
+}
+
+.modal-content {
+	background-color: var(--bg-color);
+	color: var(--text-color);
 }
 
 #clockDiv {
 	margin-top: 10px;
 	width: 150px;
-	height: 60;
+	height: 60px;
 
     border-radius: 0 10px 10px 0;
 	cursor: pointer;
@@ -50,7 +89,7 @@ body{
 #totalScoreDiv {
 	margin-top: 10px;
 	width: 150px;
-	height: 60;
+	height: 60px;
 
     border-radius: 10px 0 0 10px;
 	cursor: pointer;
@@ -61,6 +100,7 @@ body{
     justify-content: center;
 	font-size: 10vw;
 	text-align: center;
+	color: var(--text-color);
 }
 
 #actionBtnsDiv {
@@ -86,6 +126,10 @@ body{
 #scoresTableDiv th,td {
 	text-align: center;
 	font-size: larger;
+}
+
+#scoresTableDiv table {
+	color: var(--text-color);
 }
 
 #roundScoreModal .modal-body {
@@ -121,7 +165,7 @@ body{
 	height: 100%;
 	width: 100%;
 	padding-top: 10%;
-	background-color: var(--lightBg);
+	background-color: var(--bg-color);
 }
 
 #newGameDivContent {
@@ -157,6 +201,23 @@ body{
 #title {
 	font-size: 6vw;
 	color: mediumseagreen;
+}
+
+#themeToggleBtn {
+	font-size: 15pt;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	cursor: pointer;
+	z-index: 1;
+}
+
+#themeToggleBtn:hover {
+	color: mediumseagreen;
+}
+
+#themeToggleBtn.bi-sun {
+	color: white;
 }
 
 @media screen and (max-width: 1500px) {

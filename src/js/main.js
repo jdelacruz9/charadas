@@ -2,6 +2,8 @@ const PAUSED = "PAUSED";
 const PLAYING = "PLAYING";
 const STOPPED = "STOPPED";
 const DEFAULT_WORD = "Charadas";
+const DARK_MODE_CLASS = "bi-moon-fill";
+const LIGHT_MODE_CLASS = "bi-sun";
 
 var clock;
 var goodWords = 0;
@@ -13,6 +15,13 @@ var rounds;
 var gameState = STOPPED;
 var totalSecs = 5;
 
+
+function init() {
+	document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
+
+	theme = localStorage.getItem("theme");
+	setTheme(theme);
+}
 
 // ################## index.html ##################
 
@@ -308,4 +317,46 @@ function createTable() {
 
 	scoresTable.append(scoresTableBody); // body to table
 	scoresTableDiv.append(scoresTable);  // table to div
+}
+
+function setTheme(theme) {
+	const selectors = "body, #themeToggleBtn, #wordDiv, .modal-content, .modal .modal-header,.modal-footer, #scoresTableDiv table";
+	const themeToggleBtn = document.getElementById("themeToggleBtn");
+
+	if (theme == "dark" && document.body.classList.contains("light-theme")) {
+		document.querySelectorAll(selectors).forEach(elem => {
+			elem.classList.remove("light-theme");
+		});
+
+		document.querySelectorAll(".modal .btn-close").forEach(elem => {
+			elem.classList.add("btn-close-white");
+		});
+
+		themeToggleBtn.classList.remove(DARK_MODE_CLASS);
+		themeToggleBtn.classList.add(LIGHT_MODE_CLASS);
+
+	} else if (theme == "light" && !document.body.classList.contains("light-theme")) {
+		document.querySelectorAll(selectors).forEach(elem => {
+			elem.classList.add("light-theme");
+		});
+
+		document.querySelectorAll(".modal .btn-close").forEach(elem => {
+			elem.classList.remove("btn-close-white");
+		});
+
+		themeToggleBtn.classList.remove(LIGHT_MODE_CLASS);
+		themeToggleBtn.classList.add(DARK_MODE_CLASS);
+	}
+
+	localStorage.setItem("theme", theme);
+}
+
+function toggleTheme() {
+	let theme = "light";
+
+	if (document.body.classList.contains("light-theme")) {
+		theme = "dark";
+	}
+
+	setTheme(theme);
 }
