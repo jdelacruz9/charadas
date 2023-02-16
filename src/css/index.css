@@ -4,6 +4,13 @@
 	--darkBg: #161c22;
 	--modal-border-color: #161c22;
 	--text-color: white;
+	--accent-color: mediumseagreen;
+}
+
+.light-theme {
+	--bg-color: white;
+	--modal-border-color: #dee2e6;
+	--text-color: #161c22;
 }
 
 html,
@@ -18,10 +25,12 @@ body{
 	background-color: var(--bg-color);
 }
 
-.light-theme {
-	--bg-color: white;
-	--modal-border-color: #dee2e6;
-	--text-color: #161c22;
+.table {
+	color: var(--text-color);
+}
+
+.table-hover>tbody>tr:hover {
+	color: var(--accent-color);
 }
 
 .container{
@@ -40,11 +49,37 @@ body{
 	justify-content: space-between;
 }
 
+#winnersDiv {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	color: var(--text-color);
+}
+
+h1#winners, span#winnerWinnersText {
+	color: var(--accent-color);
+}
+
+#finalScoresTableContainer {
+	min-width: 30%;
+	max-width: 80%;
+	max-height: 50%;
+	overflow-y: auto;
+}
+
+#playAgainBtn {
+	color: white;
+	background-color: var(--accent-color);
+	margin-top: 20px;
+}
+
 .headerElement {
 	display: flex;
     justify-content: center;
     align-items: center;
-	background-color: mediumseagreen;
+	background-color: var(--accent-color);
 	font-size: 40px;
 }
 
@@ -55,7 +90,7 @@ body{
 
 .modal .timerInputsDiv span {
 	display: inline;
-	background-color: mediumseagreen;
+	background-color: var(--accent-color);
 	color: white;
 	width: 20%;
 	min-width: 90px;
@@ -116,20 +151,11 @@ body{
 }
 
 #nextBtn, #plusBtn {
-	color: mediumseagreen;
+	color: var(--accent-color);
 }
 
 #playBtn, #pauseBtn {
 	color: rgb(60, 127, 179);
-}
-
-#scoresTableDiv th,td {
-	text-align: center;
-	font-size: larger;
-}
-
-#scoresTableDiv table {
-	color: var(--text-color);
 }
 
 #roundScoreModal .modal-body {
@@ -147,11 +173,6 @@ body{
 	font-size: 8vw;
 	margin-left: 10px;
 	margin-right: 10px;
-}
-
-#winnerName {
-	font-size: 4vw;
-	overflow-wrap: break-word;
 }
 
 #newGameModal .modal-content * {
@@ -194,13 +215,13 @@ body{
 #startGameBtn {
 	border-radius: 20px;
 	color: white; 
-	background-color: mediumseagreen;
+	background-color: var(--accent-color);
 	width: 5rem;
 }
 
 #title {
 	font-size: 6vw;
-	color: mediumseagreen;
+	color: var(--accent-color);
 }
 
 #themeToggleBtn {
@@ -213,7 +234,7 @@ body{
 }
 
 #themeToggleBtn:hover {
-	color: mediumseagreen;
+	color: var(--accent-color);
 }
 
 #themeToggleBtn.bi-sun {
