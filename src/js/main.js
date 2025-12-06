@@ -2,6 +2,7 @@ const PAUSED = "PAUSED";
 const PLAYING = "PLAYING";
 const STOPPED = "STOPPED";
 const DEFAULT_WORD = "Charadas";
+const DEFAULT_TRANSLATED_WORD = "Charades";
 const DARK_MODE_CLASS = "bi-moon-fill";
 const LIGHT_MODE_CLASS = "bi-sun";
 
@@ -14,6 +15,7 @@ var teams = 3;
 var rounds;
 var gameState = STOPPED;
 var totalSecs = 5;
+var words;
 
 
 function init() {
@@ -21,6 +23,7 @@ function init() {
 
 	theme = localStorage.getItem("theme");
 	setTheme(theme);
+	words  = Object.keys(words_dict);
 }
 
 // ################## index.html ##################
@@ -33,6 +36,7 @@ function getRandomInt(min, max) {
 
 function newWord(){
 	elem = document.getElementById('currentWord');
+	englishElem = document.getElementById('currentTranslatedWord');
 
 	if(words.length == 0){
 		nWord = 'Reload the webpage.';
@@ -44,6 +48,7 @@ function newWord(){
 	}
 
 	elem.innerHTML = nWord;
+	englishElem.innerHTML = words_dict[nWord]
 }
 
 function updateTimer() {
@@ -80,6 +85,7 @@ function timesUp() {
 	gameState = STOPPED;
 
 	document.getElementById('currentWord').innerHTML = DEFAULT_WORD;
+	document.getElementById('currentTranslatedWord').innerHTML = DEFAULT_TRANSLATED_WORD;
 	document.getElementById("playBtn").hidden = false;
 	document.getElementById("pauseBtn").hidden = true;
 

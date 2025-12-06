@@ -4,6 +4,7 @@
 	--darkBg: #161c22;
 	--modal-border-color: #161c22;
 	--text-color: white;
+	--translated-text-color: #d0d1d2;
 	--accent-color: mediumseagreen;
 }
 
@@ -11,6 +12,7 @@
 	--bg-color: white;
 	--modal-border-color: #dee2e6;
 	--text-color: #161c22;
+	--translated-text-color: #44494e;
 }
 
 html,
@@ -136,6 +138,12 @@ h1#winners, span#winnerWinnersText {
 	font-size: 10vw;
 	text-align: center;
 	color: var(--text-color);
+	flex-direction: column;
+}
+
+#wordDiv #currentTranslatedWord {
+	font-size: 4vw;
+	color: var(--translated-text-color);
 }
 
 #actionBtnsDiv {
