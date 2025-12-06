@@ -7,7 +7,6 @@ const DARK_MODE_CLASS = "bi-moon-fill";
 const LIGHT_MODE_CLASS = "bi-sun";
 
 var clock;
-var goodWords = 0;
 var round;
 var team;
 var scores;
@@ -16,7 +15,10 @@ var rounds;
 var gameState = STOPPED;
 var totalSecs = 5;
 var words;
-
+var currentRound = {
+	score: 0,
+	words: []
+}
 
 function init() {
 	document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
@@ -89,9 +91,22 @@ function timesUp() {
 	document.getElementById("playBtn").hidden = false;
 	document.getElementById("pauseBtn").hidden = true;
 
+	let roundWordsList = document.querySelector("#roundScoreModal .modal-body #roundWords");
+
+	roundWordsList.innerHTML = "";
+	currentRound.words.forEach(obj => {
+		let good = Object.values(obj)[0];
+		let word = Object.keys(obj)[0];
+
+		let li = document.createElement("li");
+		li.innerText = word;
+		li.className = good ? "goodWord" : "badWord";
+		roundWordsList.appendChild(li);
+	})
+
 	setClock(totalSecs);
 	
-	document.getElementById("totalRoundScore").innerHTML = goodWords;
+	document.getElementById("totalRoundScore").innerHTML = currentRound.score;
 	let roundScoreModal = new bootstrap.Modal(document.getElementById('roundScoreModal'), {});
 	roundScoreModal.toggle();
 }
@@ -101,9 +116,10 @@ function endRound() {
 	const teamId = team+1;
 	const roundName = round+1;
 	const teamData = $table.bootstrapTable('getRowByUniqueId', teamId);
-	$table.bootstrapTable('updateByUniqueId', {id: teamId, row: {[roundName]: goodWords, total: teamData["total"] + goodWords}});
+	$table.bootstrapTable('updateByUniqueId', {id: teamId, row: {[roundName]: currentRound.score, total: teamData["total"] + currentRound.score}});
 
-	goodWords = 0;
+	currentRound.score = 0;
+	currentRound.words = [];
 
 	document.getElementById("currentScore").innerHTML = 0;
 
@@ -163,16 +179,16 @@ function gameOver() {
 }
 
 function plus(q=1) {
-	goodWords += q;
-	document.getElementById("currentScore").innerHTML = goodWords;
-	document.getElementById("totalRoundScore").innerHTML = goodWords;
+	currentRound.score += q;
+	document.getElementById("currentScore").innerHTML = currentRound.score;
+	document.getElementById("totalRoundScore").innerHTML = currentRound.score;
 
 }
 
 function minus(q=1) {
-	goodWords-=q;
-	document.getElementById("currentScore").innerHTML = goodWords;
-	document.getElementById("totalRoundScore").innerHTML = goodWords;
+	currentRound.score-=q;
+	document.getElementById("currentScore").innerHTML = currentRound.score;
+	document.getElementById("totalRoundScore").innerHTML = currentRound.score;
 }
 
 function setClock(sec = totalSecs) {
@@ -189,14 +205,18 @@ function setClock(sec = totalSecs) {
 
 function skip() {
 	if (gameState != PLAYING) return;
+	let currentWord = document.getElementById('currentWord').textContent;
+	currentRound.words.push({[currentWord]: false});
 	newWord();
 }
 
 function next() {
 	if (gameState != PLAYING) return;
 
-	goodWords++;
-	document.getElementById("currentScore").innerHTML = goodWords;
+	currentRound.score++;
+	document.getElementById("currentScore").innerHTML = currentRound.score;
+	let currentWord = document.getElementById('currentWord').textContent;
+	currentRound.words.push({[currentWord]: true});
 	newWord();
 }
 
@@ -221,8 +241,9 @@ function play(reset=false) {
 	gameState = PLAYING;
 
 	if (reset) {
-		goodWords = 0;
-		document.getElementById("currentScore").innerHTML = goodWords;
+		currentRound.score = 0;
+		currentRound.words = [];
+		document.getElementById("currentScore").innerHTML = currentRound.score;
 		startClock(totalSecs);
 	} else {
 		startClock(currentSecs);
@@ -251,7 +272,8 @@ function startGame() {
 
 	round = 0;
 	team = 0;
-	goodWords = 0;
+	currentRound.score = 0;
+	currentRound.words = [];
 
 	scores = initArray(teams, { "total": 0 });
 

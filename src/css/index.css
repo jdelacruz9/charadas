@@ -6,6 +6,7 @@
 	--text-color: white;
 	--translated-text-color: #d0d1d2;
 	--accent-color: mediumseagreen;
+	--red: rgb(179, 60, 60);
 }
 
 .light-theme {
@@ -86,7 +87,7 @@ h1#winners, span#winnerWinnersText {
 }
 
 .modal .form-control {
-	background-color: rgb(179, 60, 60);
+	background-color: var(--red);
 	color: white;
 }
 
@@ -155,7 +156,7 @@ h1#winners, span#winnerWinnersText {
 }
 
 #skipBtn, #minusBtn {
-	color: rgb(179, 60, 60);
+	color: var(--red);
 }
 
 #nextBtn, #plusBtn {
@@ -170,6 +171,27 @@ h1#winners, span#winnerWinnersText {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
+}
+
+#roundScoreModal .modal-body ul#roundWords {
+	width: 80%;
+	columns: 2;
+	column-gap: 50px;
+	overflow: auto;
+	list-style-type: decimal;
+}
+
+#roundScoreModal .modal-body ul#roundWords li {
+	overflow-wrap: anywhere;
+}
+
+#roundScoreModal .modal-body .goodWord {
+	color: var(--accent-color);
+}
+
+#roundScoreModal .modal-body .badWord {
+	color: var(--red);
 }
 
 #roundScoreModal .bi {
@@ -210,7 +232,7 @@ h1#winners, span#winnerWinnersText {
 
 #newGameDivContent input {
 	max-width: 300px;
-	background-color: rgb(179, 60, 60);
+	background-color: var(--red);
 	color: white;
 	border-radius: 20px;
 }

@@ -83,9 +83,12 @@
 						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<i class="bi bi-dash-circle" id="minusBtn" onclick="minus(1)"></i>
-						<span id="totalRoundScore">19</span>
-						<i class="bi bi-plus-circle" id="plusBtn" onclick="plus(1)"></i>
+						<div style="align-items: center;display: flex;">
+							<i class="bi bi-dash-circle" id="minusBtn" onclick="minus(1)"></i>
+							<span id="totalRoundScore">19</span>
+							<i class="bi bi-plus-circle" id="plusBtn" onclick="plus(1)"></i>
+						</div>
+						<ul id="roundWords"></ul>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn" data-bs-dismiss="modal" style="color: white; background-color: var(--accent-color);">
