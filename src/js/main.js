@@ -13,7 +13,7 @@ var scores;
 var teams = 3;
 var rounds;
 var gameState = STOPPED;
-var totalSecs = 5;
+var totalSecs = 90;
 var words;
 var currentRound = {
 	score: 0,
